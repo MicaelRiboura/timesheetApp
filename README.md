@@ -1,5 +1,17 @@
 # TimeSheet WebApp
 
+<h1 align="center" style="color: #000;">
+  <img src="https://github.com/MicaelRiboura/timesheetApp/blob/main/images/timesheet-presentation.jpg" alt="Logo">
+</h1>
+
+<h1 align="center" style="color: #000;">
+  <img src="https://github.com/MicaelRiboura/timesheetApp/blob/main/images/timesheet.png" alt="Logo" height="200">
+</h1>
+
+<h3 align="center">
+  Timesheet - Seu WebApp para gerência de horários
+</h3>
+
 ## 👩‍🔧 Time
 
 - Micael Riboura dos Santos
