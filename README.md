@@ -35,7 +35,7 @@
 
 ### Clone esse projeto e acesse sua pasta:
 
-Para clonar e rodar a aplicação, você precisará [Git](https://git-scm.com/), [Node.js v14.18](https://nodejs.org) ou maior + [Yarn v1.22](https://yarnpkg.com/) ou maior instalada no seu computador.
+Para clonar e rodar a aplicação, você precisará [Git](https://git-scm.com/), [Node.js v14.18](https://nodejs.org) ou maior + [Yarn v1.22](https://yarnpkg.com/) ou maior instalados no seu computador.
 
 ```bash
 $ git clone git@github.com:MicaelRiboura/timesheetApp.git
