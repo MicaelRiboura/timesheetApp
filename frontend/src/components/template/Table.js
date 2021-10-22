@@ -1,3 +1,5 @@
+import { ClipboardCheck } from "heroicons-react";
+
 const Table = ({ labels, registers }) => {
     return (
         <div className="flex flex-col space-y-4">
@@ -16,6 +18,9 @@ const Table = ({ labels, registers }) => {
 
                                         )
                                     })}
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Ver histórico
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
@@ -36,11 +41,17 @@ const Table = ({ labels, registers }) => {
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="text-sm text-blue-400">{register.role}</div>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-center font-semibold">
+                                        <td className="px-6 py-4 whitespace-nowrap font-semibold">
                                             {register.startTime}
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-center font-semibold">
+                                        <td className="px-6 py-4 whitespace-nowrap font-semibold">
                                             {register.finishTime}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap font-semibold">
+                                            <div className="flex items-center text-green-500 cursor-pointer">
+                                                <ClipboardCheck className="h-4" />
+                                                <span>Histórico</span>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}

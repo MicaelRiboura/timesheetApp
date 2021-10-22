@@ -1,4 +1,4 @@
-import { ClockOutline, UserOutline, Logout } from "heroicons-react";
+import { UsersOutline, UserAddOutline, Logout } from "heroicons-react";
 
 const Header = () => {
     return (
@@ -13,15 +13,15 @@ const Header = () => {
                             <li>
                                 <a href="">
                                     <p className="p-2 flex items-center space-x-1 text-blue-900 hover:bg-gray-50 transition rounded-lg font-semibold">
-                                        <ClockOutline className="h-5" />
-                                        <span>Lista de Horários</span>
+                                        <UsersOutline className="h-5" />
+                                        <span>Funcionários</span>
                                     </p>
                                 </a>
                             </li>
                             <li>
                                 <a href="">
                                     <p className="p-2 flex items-center space-x-1 text-blue-900 hover:bg-gray-50 transition rounded-lg font-semibold">
-                                        <UserOutline className="h-5" />
+                                        <UserAddOutline className="h-5" />
                                         <span>Cadastrar Funcionário</span>
                                     </p>
                                 </a>
