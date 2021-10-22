@@ -28,6 +28,7 @@
 - [Node.js](https://nodejs.org/en/)
 - [Sequelize](https://sequelize.org/)
 - [Express](https://expressjs.com/pt-br/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ### Frontend
 
@@ -48,13 +49,13 @@ $ git clone git@github.com:MicaelRiboura/timesheetApp.git
 
 
 ```bash
-# Acessa a pasta do backend
+# Acesse a pasta do backend
 $ cd backend
 
-# Instala as dependências
+# Instale as dependências
 $ yarn install
 
-# Cria o banco no Postgres
+# Crie o banco no Postgres
 $ yarn sequelize db:create
 
 # para finalizar, inicie o servidor
@@ -64,10 +65,10 @@ $ yarn dev
 ### Frontend
 
 ```bash
-# Acessa a pasta do frontend
+# Acesse a pasta do frontend
 $ cd frontend
 
-# Instala as dependências
+# Instale as dependências
 $ yarn install
 
 # para finalizar, inicie a aplicação web
