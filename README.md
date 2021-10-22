@@ -12,11 +12,14 @@
 </h1>
 
 
-## 👩‍🔧 Time
-
-- Micael Riboura dos Santos
-- Messias Barreto
-- Matheus Reichert Dias
+## 🌟 Time
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/MicaelRiboura"><img src="https://avatars.githubusercontent.com/u/53049385?v=4" width="100px;" alt=""/><br /><sub><b>Micael Riboura</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/TheusDias"><img src="https://avatars.githubusercontent.com/u/66037020?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Dias</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/messias-barreto"><img src="https://avatars.githubusercontent.com/u/60475024?v=4" width="100px;" alt=""/><br /><sub><b>Messias Barreto</b></sub></a><br /></td>
+  </tr>
+</table>
 
 ## 🚀 Tecnologias
 
