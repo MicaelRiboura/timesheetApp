@@ -1,8 +1,12 @@
 const PageTemplateForm = ({children, title, imageSrc}) => {
     return (
         <div className="h-screen grid grid-cols-3">
-                <div className="hidden md:block col-span-1 bg-black">
-                    
+                <div className="hidden md:block col-span-1 bg-black"
+                    style={{
+                        backgroundImage: `url(${imageSrc})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: '50%'
+                    }}>
                 </div>
                 <div className=" col-span-4 md:col-span-2 flex items-center justify-center">
                     <div className="flex flex-col space-y-4">
