@@ -1,7 +1,9 @@
 import React from 'react';
-import Header from '../components/template/Header';
-import Table from '../components/template/Table';
-import SearchInput from '../components/forms/SearchInput';
+import Header from '../../components/template/Header';
+import Table from '../../components/template/Table';
+import SearchInput from '../../components/forms/SearchInput';
+import "./home.page.css"
+
 export default function Home() {
     return (
         <div>
