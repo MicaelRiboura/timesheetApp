@@ -3,10 +3,12 @@ const dbConfig = require('../config/dbConfig');
 
 const Employee = require('../models/employee.model');
 const Occupation = require('../models/occupation.model');
+const User = require('../models/user.model');
 
 const models = [
     Employee,
-    Occupation
+    Occupation,
+    User
 ];
 
 class Database {
