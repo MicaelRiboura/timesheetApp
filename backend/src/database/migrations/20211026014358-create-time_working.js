@@ -2,20 +2,29 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('employee', {
+    return queryInterface.createTable('time_working', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
 
-      name: {
+      hour:  {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+
+      status: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      role: {
-        type: Sequelize.STRING,
-        allowNull: false
+
+      employee_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'employee', 
+          key:  'id'
+        }
       },
 
       occupation_id: {
@@ -29,10 +38,10 @@ module.exports = {
       // Timestamps
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('employee');
+    return queryInterface.dropTable('time_working')
   }
 };

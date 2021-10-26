@@ -2,37 +2,35 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('employee', {
+    return queryInterface.createTable('occupation', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
 
       name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      role: {
+
+      time_in:  {
         type: Sequelize.STRING,
         allowNull: false
       },
 
-      occupation_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'occupation', 
-          key:  'id'
-        }
+      time_out: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
 
       // Timestamps
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('employee');
+   return queryInterface.dropTable('occupation')
   }
 };

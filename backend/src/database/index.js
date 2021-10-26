@@ -2,11 +2,12 @@ const Sequelize = require('sequelize');
 const dbConfig = require('../config/dbConfig');
 
 const Employee = require('../models/employee.model');
+const Occupation = require('../models/occupation.model');
 
 const models = [
-    Employee
+    Employee,
+    Occupation
 ];
-
 
 class Database {
     constructor() {
@@ -16,8 +17,7 @@ class Database {
     init() {
         this.connection = new Sequelize(dbConfig);
         models
-            .map(model => model.init(this.connection))
-            .map(model => model.associate && model.associate(this.connection.models));
+            .map(model => model.init(this.connection));
     }
 }
 

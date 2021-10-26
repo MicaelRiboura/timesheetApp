@@ -1,15 +1,63 @@
-const service = require('../services/employee.service');
+const Employee = require('../models/employee.model');
 
 module.exports = {
-    async store (req, res) {
-        const { name, cpf, role, startTime, finishTime } = req.body;
+    async index (req, res) {
         try {
-            const user = await service.create({ name, cpf, role, startTime, finishTime });
-            return res.status(201).json(user);
-            
-        } catch( error ) {
-            return res.status(400).send({customMessage: error});
+            const employee = await Employee.findAll();
+            return res.json(employee);
+        } catch( erro ) {
+            console.log(erro);
+            return;
         }
+    },
 
+    async find(req, res){
+        try{
+            const { id } = req.params;
+            const employee = await Employee.findOne({ where: { id }});
+            return res.json(employee);
+        }catch( erro ){
+            console.log( erro )
+            return;
+        }
+    },
+    
+    async store (req, res) {
+        const { name, role, occupation_id } = req.body;
+        try {
+            const employee = await Employee.create({ name, role, occupation_id });
+            return res.json(employee);
+        } catch( erro ) {
+            console.log(erro);
+            return;
+        }
+    },
+
+    async update (req, res) {
+        const { id } = req.params;
+        const { name, role, occupation_id } = req.body;
+        try {
+            const employee = await Employee.update({ 
+                name, 
+                role, 
+                occupation_id 
+            }, {where: {id}});
+
+            return res.json(employee);
+        } catch( erro ) {
+            console.log(erro);
+            return;
+        }
+    },
+
+    async destroy (req, res) {
+        const { id } = req.params;
+        try {
+            const employee = await Employee.destroy({where: {id}});
+            return res.json(employee);
+        } catch( erro ) {
+            console.log(erro);
+            return;
+        }
     }
 }

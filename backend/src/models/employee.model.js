@@ -1,18 +1,21 @@
-const {Model, DataTypes} = require('sequelize');
+const { Sequelize, Model, DataTypes, INTEGER } = require('sequelize');
+
 class Employee extends Model {
     static init(sequelize) {
         super.init({
-            name: {type: DataTypes.STRING, field: 'name' },
-            cpf: {type: DataTypes.STRING, field: 'cpf'},
-            role: {type: DataTypes.STRING, field: 'role'},
-            startTime: {type: DataTypes.STRING, field: 'start_time' },
-            finishTime: {type: DataTypes.STRING, field: 'finish_time' },
+            name: DataTypes.STRING,
+            role: DataTypes.STRING,
+            occupation_id: DataTypes.INTEGER
         }, {
             sequelize,
             tableName: 'employee',
         })
 
         return this;
+    }
+
+    static associations(models){
+        this.hasOne(models.Occupation, { foreignKey: 'occupation_id', as: 'occupation'});
     }
 }
 module.exports = Employee;
