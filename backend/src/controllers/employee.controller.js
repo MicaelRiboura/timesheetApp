@@ -1,35 +1,32 @@
-const Employee = require('../models/employee.model');
+const service = require('../services/employee.service');
 
 module.exports = {
-    async index (req, res) {
+    async index (_req, res) {
         try {
-            const employee = await Employee.findAll();
+            const employee = await service.index();
             return res.json(employee);
         } catch( erro ) {
-            console.log(erro);
-            return;
+            return res.send({ errorMessage : erro });
         }
     },
 
     async find(req, res){
         try{
             const { id } = req.params;
-            const employee = await Employee.findOne({ where: { id }});
+            const employee = await service.find({ id });
             return res.json(employee);
-        }catch( erro ){
-            console.log( erro )
-            return;
+        } catch( erro ) {
+            return res.send({ errorMessage : erro });
         }
     },
     
     async store (req, res) {
         const { name, role, occupation_id } = req.body;
         try {
-            const employee = await Employee.create({ name, role, occupation_id });
+            const employee = await service.store({ name, role, occupation_id });
             return res.json(employee);
         } catch( erro ) {
-            console.log(erro);
-            return;
+            return res.send({ errorMessage : erro });
         }
     },
 
@@ -37,27 +34,20 @@ module.exports = {
         const { id } = req.params;
         const { name, role, occupation_id } = req.body;
         try {
-            const employee = await Employee.update({ 
-                name, 
-                role, 
-                occupation_id 
-            }, {where: {id}});
-
+            const employee = await service.update({ id, name, role, occupation_id });
             return res.json(employee);
         } catch( erro ) {
-            console.log(erro);
-            return;
+            return res.send({ errorMessage : erro });
         }
     },
 
     async destroy (req, res) {
         const { id } = req.params;
         try {
-            const employee = await Employee.destroy({where: {id}});
+            const employee = await service.destroy({ id });
             return res.json(employee);
         } catch( erro ) {
-            console.log(erro);
-            return;
+            return res.send({ errorMessage : erro });
         }
     }
 }
