@@ -8,16 +8,14 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
-
       name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      role: {
+      socialId: {
         type: Sequelize.STRING,
         allowNull: false
       },
-
       occupation_id: {
         type: Sequelize.INTEGER,
         references: {

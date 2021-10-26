@@ -21,9 +21,9 @@ module.exports = {
     },
     
     async store (req, res) {
-        const { name, role, occupation_id } = req.body;
+        const { name, socialId, occupation_id } = req.body;
         try {
-            const employee = await service.store({ name, role, occupation_id });
+            const employee = await service.store({ name, socialId, occupation_id });
             return res.json(employee);
         } catch( erro ) {
             return res.send({ errorMessage : erro });
@@ -32,9 +32,9 @@ module.exports = {
 
     async update (req, res) {
         const { id } = req.params;
-        const { name, role, occupation_id } = req.body;
+        const { name, socialId, occupation_id } = req.body;
         try {
-            const employee = await service.update({ id, name, role, occupation_id });
+            const employee = await service.update({ id, name, socialId, occupation_id });
             return res.json(employee);
         } catch( erro ) {
             return res.send({ errorMessage : erro });

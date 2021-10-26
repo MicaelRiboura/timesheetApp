@@ -4,7 +4,7 @@ class Employee extends Model {
     static init(sequelize) {
         super.init({
             name: DataTypes.STRING,
-            role: DataTypes.STRING,
+            socialId: DataTypes.STRING,
             occupation_id: DataTypes.INTEGER
         }, {
             sequelize,

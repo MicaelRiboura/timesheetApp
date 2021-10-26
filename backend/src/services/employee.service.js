@@ -19,20 +19,20 @@ module.exports = {
         }
     },
     
-    async store ({ name, role, occupation_id }) {
+    async store ({ name, socialId, occupation_id }) {
         try {
-            return await Model.create({ name, role, occupation_id });
+            return await Model.create({ name, socialId, occupation_id });
         } catch( erro ) {
             console.log(erro);
             return erro;
         }
     },
 
-    async update ({id, name, role, occupation_id}) {
+    async update ({id, name, socialId, occupation_id}) {
         try {
             return await Model.update({ 
                 name, 
-                role, 
+                socialId, 
                 occupation_id 
             }, {where: {id}});
 
