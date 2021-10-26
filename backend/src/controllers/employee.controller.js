@@ -1,15 +1,14 @@
-const Model = require('../models/employee.model');
+const service = require('../services/employee.service');
 
 module.exports = {
     async store (req, res) {
-        const { name, role, startTime, finishTime } = req.body;
+        const { name, cpf, role, startTime, finishTime } = req.body;
         try {
-            const user = await Model.create({ name, role, start_time: startTime, finish_time: finishTime });
-            return res.json(user);
+            const user = await service.create({ name, cpf, role, startTime, finishTime });
+            return res.status(201).json(user);
             
-        } catch( erro ) {
-            console.log(erro);
-            return;
+        } catch( error ) {
+            return res.status(400).send({customMessage: error});
         }
 
     }

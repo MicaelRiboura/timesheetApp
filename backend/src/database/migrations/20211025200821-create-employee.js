@@ -5,11 +5,15 @@ module.exports = {
     return queryInterface.createTable('employee', {
       id: {
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.INTEGER,
+        autoIncrement:true,
         allowNull: false
       },
       name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      cpf: {
         type: Sequelize.STRING,
         allowNull: false
       },
