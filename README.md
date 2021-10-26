@@ -58,8 +58,25 @@ $ yarn install
 # Crie o banco no Postgres
 $ yarn sequelize db:create
 
+# Cria as tabelas no banco conforme os arquivos migrations
+$ yarn sequelize db:migrate
+
 # para finalizar, inicie o servidor
 $ yarn dev
+```
+
+#### Comandos do Sequelize:
+
+
+```bash
+# Cria o banco no Postgres
+$ yarn sequelize db:create
+
+# Cria as tabelas no banco conforme os arquivos migrations
+$ yarn sequelize db:migrate
+
+# Cria uma migration
+$ yarn sequelize migration:create --name=nome-da-migration
 ```
 
 ### Frontend
@@ -73,4 +90,39 @@ $ yarn install
 
 # para finalizar, inicie a aplicação web
 $ yarn start
+```
+
+
+## Comandos GIT
+
+```bash
+# Acessa os status dos arquivos
+$ git status
+
+# Prepara os arquivos modificados para o commit naquela pasta
+$ git add .
+
+# Cria um novo commit
+$ git commit -am 'Meu commit'
+
+# Cria uma nova branch
+$ git branch nome-da-branch
+
+# Lista as branches
+$ git branch
+
+# Navega para uma branch
+$ git checkout nome-da-branch
+
+# Cria e navega para uma nova branch
+$ git checkout -b nome-da-branch
+
+# Deleta uma branch
+$ git branch -d nome-da-branch
+
+# Envia seus commits para o repositório remoto
+$ git push
+
+# Atualiza seu repositório local com alterações do remoto
+$ git pull
 ```
