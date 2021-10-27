@@ -15,7 +15,8 @@ routes.post('/occupation', OccupationController.store);
 routes.get('/occupation', OccupationController.index);
 
 routes.post('/signup', UserController.signup);
-
+routes.post('/signin', UserController.signin);
+routes.post('/validate-token', UserController.validateToken);
 
 
 module.exports = routes;

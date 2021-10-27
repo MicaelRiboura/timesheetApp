@@ -11,12 +11,21 @@ module.exports = {
         }
     },
     
-    async store(req, res) {
-        const { name, time_in, time_out } = req.body;
+    async signin(req, res) {
+        const { socialId, password } = req.body;
         try {
-            console.log(name);
-            const occupation = await service.store({ name, time_in, time_out});
-            return res.json(occupation);
+            const responseToken = await service.signin({ socialId, password });
+            return res.json(responseToken);
+        } catch ( erro ) {
+            return res.send({ errorMessage: erro });
+        }
+    },
+
+    async validateToken(req, res) {
+        const { token } = req.body;
+        try {
+            const responseToken = await service.validateToken({ token });
+            return res.send(responseToken);
         } catch ( erro ) {
             return res.send({ errorMessage: erro });
         }
