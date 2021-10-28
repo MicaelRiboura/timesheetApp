@@ -1,4 +1,4 @@
-input{
+/* input{
     border-radius: 5px;
     text-align: center;
     border-color: #3e8ff7;
@@ -7,9 +7,9 @@ input{
     padding-left: 40%;
     padding-right: 40%;
 
-}
+} */
 
-select{
+/* select{
     text-align: center;
     color: #252c48;
     border-radius: 5px;
@@ -20,7 +20,7 @@ option{
     outline: none;
     border: none;
     color: #252c48;
-}
+} */
 
 button{
     background-color: #3e8ff7;
