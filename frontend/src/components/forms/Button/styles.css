@@ -1,0 +1,18 @@
+.button{
+    background-color: #3e8ff7;
+    border-radius: 5px;
+    width: 50%;
+    height: 50%;
+    align-self: center;
+    padding: 5px;
+    color: white;
+    transition: .3s;
+    border-radius: 6px;
+    
+}
+
+.button:hover{
+    background-color: #252c48;
+    color: white;
+
+}
