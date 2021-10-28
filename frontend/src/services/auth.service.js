@@ -7,7 +7,10 @@ axios.create({
 });
 
 const signIn = async ({ socialId, password }) => {
-    return await axios.post(`${baseUrl}/signin`).then(resp => {
+    return await axios.post(`${baseUrl}/signin`, {
+        socialId,
+        password
+    }).then(resp => {
         return resp;
     });
 }
