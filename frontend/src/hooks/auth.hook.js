@@ -20,7 +20,6 @@ const AuthProvider = ({children}) => {
     const signIn = async ({ socialId, password }) => {
         try {
             const response = await signInService({ socialId, password });
-            console.log(response);
             if(response.data.user) {
                 setUser(response.data.user);
                 setSigned(true);

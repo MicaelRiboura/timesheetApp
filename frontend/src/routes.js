@@ -12,8 +12,6 @@ export default function Routes() {
 
     const { signed } = useAuth();
 
-    console.log(signed);  
-
     if(signed) {
         return (
             <Router>

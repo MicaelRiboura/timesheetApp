@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PageTemplateForm from "../../components/template/PageTemplateForm";
 import { useAuth } from "../../hooks/auth.hook";
 import "./login.page.css"
@@ -8,19 +8,10 @@ function Login() {
     const [socialId, setSocialId ] = useState(null);
     const [password, setPassword ] = useState(null);
 
-    useEffect(() => {
-        console.log('socialId: ', socialId);
-    }, [socialId]);
-
-    useEffect(() => {
-        console.log('password: ', password);
-    }, [password]);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         if(socialId && password) {
-            const resp = await signIn({ socialId, password });
-            console.log('resp: ', resp);
+            await signIn({ socialId, password });
         }
     }
 
