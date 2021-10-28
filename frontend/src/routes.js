@@ -2,8 +2,7 @@
 import { 
     BrowserRouter as Router, 
     Switch, 
-    Route,
-    Redirect
+    Route
 } from 'react-router-dom';
 import { useAuth } from './hooks/auth.hook';
 import Home from './pages/home/home.page';

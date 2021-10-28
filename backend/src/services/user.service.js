@@ -30,13 +30,16 @@ module.exports = {
             console.log('user: ', user);
             const payload = {
                 id: user.id,
-                // name: user.name,
                 iat: now,
                 exp: now + (60 * 60 * 24 * 3)
             };
 
             return {
-                ...payload,
+                user: {
+                    id: user.id,
+                    name: user.name,
+                    socialId: user.socialId
+                },
                 token: jwt.encode(payload, process.env.AUTH_SECRET)
             };
 

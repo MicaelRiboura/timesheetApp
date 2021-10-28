@@ -1,6 +1,8 @@
-import { UsersOutline, UserAddOutline, Logout } from "heroicons-react";
+import { UsersOutline, UserAddOutline, User, Logout } from "heroicons-react";
+import { useAuth } from "../../hooks/auth.hook";
 
 const Header = () => {
+    const { user, signOut } = useAuth();
     return (
         <header className="bg-white shadow-lg w-screen py-4">
             <div className="xl:px-12 flex justify-between items-center">
@@ -29,8 +31,15 @@ const Header = () => {
                         </ul>
                     </nav>
                 </div>
-                <div className="p-4">
-                   <div className="flex items-center space-x-1 cursor-pointer font-semibold text-red-900">
+                <div className="p-4 flex items-center space-x-4">
+                   <div className="flex items-center space-x-1 font-semibold">
+                       <User className="h-5" />
+                       <span>{user.name}</span>
+                   </div>
+                   <div 
+                        className="flex items-center space-x-1 cursor-pointer font-semibold text-red-900" 
+                        onClick={() => signOut()}
+                    >
                        <Logout className="h-5" />
                        <span>Sair</span>
                    </div>
