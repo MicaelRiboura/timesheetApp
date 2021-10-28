@@ -1,0 +1,62 @@
+input{
+    border-radius: 5px;
+    text-align: center;
+    border-color: #3e8ff7;
+    color: #252c48;
+    align-self: center;
+    padding-left: 40%;
+    padding-right: 40%;
+
+}
+
+select{
+    text-align: center;
+    color: #252c48;
+    border-radius: 5px;
+    
+}
+
+option{
+    outline: none;
+    border: none;
+    color: #252c48;
+}
+
+button{
+    background-color: #3e8ff7;
+    border-radius: 5px;
+    width: 50%;
+    height: 50%;
+    align-self: center;
+    padding: 5px;
+    color: white;
+    transition: .3s;
+    
+}
+
+button:hover{
+    background-color: #252c48;
+    color: white;
+
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+
+ }
+
+.nome-cadastro::-webkit-input-placeholder{
+    color: #252c48;
+
+}
+
+.cpf-cadastro::-webkit-input-placeholder{
+    color: #252c48;
+
+}
+
+.cargo-cadastro::-webkit-input-placeholder{
+    color: #252c48;
+
+}
+

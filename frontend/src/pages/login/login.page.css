@@ -3,7 +3,6 @@ input{
     text-align: center;
     border-color: #3e8ff7;
     color: #252c48;
-    
 }
 
 button{
@@ -28,12 +27,12 @@ input:focus::-webkit-input-placeholder {
     color: transparent;
  }
 
-.cpf::-webkit-input-placeholder{
+.cpf-login::-webkit-input-placeholder{
     color: #3e8ff7;
 
 }
 
-.codigo::-webkit-input-placeholder{
+.senha-login::-webkit-input-placeholder{
     color: #3e8ff7;
 
 }
