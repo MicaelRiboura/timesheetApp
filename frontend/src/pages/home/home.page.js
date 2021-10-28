@@ -10,7 +10,7 @@ export default function Home() {
             <Header />
             <div style={{height: '90vh'}} className=" px-8 mx-auto" style={{maxWidth: '1200px'}}>
                 <div className="py-12 flex items-center space-x-4">
-                   <SearchInput value={''} placeholder="Buscar por CPF" />
+                   <SearchInput placeholder="Buscar por CPF" />
                 </div>
                 <Table
                     labels={['CPF', 'Nome', 'Cargo', 'Horário de Entrada', 'Horário de Saída']}

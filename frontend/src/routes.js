@@ -4,19 +4,34 @@ import {
     Switch, 
     Route
 } from 'react-router-dom';
-
+import { useAuth } from './hooks/auth.hook';
+import Cadastro from './pages/cadastro/cadastro.page';
 import Home from './pages/home/home.page';
 import Login from './pages/login/login.page';
-import Cadastro from './pages/cadastro/cadastro.page';
 
 export default function Routes() {
-    return (
-        <Router>
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/cadastro" component={Cadastro}/>
-            </Switch>
-        </Router>
-    );
+
+    const { signed } = useAuth();
+
+    if(signed) {
+        return (
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/funcionarios/cadastro" component={Cadastro}/>
+                    <Route path="*" component={Home} />
+                </Switch>
+            </Router>
+        );
+    } else {
+        return (
+            <Router>
+                <Switch>
+                    {/* <Route exact path="/" component={Home} /> */}
+                    <Route path="/login" component={Login} />
+                    <Route path="*" component={Login} /> 
+                </Switch>
+            </Router>
+        );
+    }
 }
