@@ -1,0 +1,13 @@
+.input{
+    border-radius: 10px;
+    /* text-align: center; */
+    border-color: #3e8ff7;
+    color: #252c48;
+    padding: .5rem;
+    outline: none;
+    
+}
+
+.input:focus {
+    outline: none;
+}
