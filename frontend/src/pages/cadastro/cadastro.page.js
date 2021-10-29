@@ -1,7 +1,6 @@
 import React from "react";
 import PageTemplateForm from "../../components/template/PageTemplateForm";
 import Header from '../../components/template/Header';
-import "./cadastro.page.css"
 import Input from "../../components/forms/Input";
 import Select from "../../components/forms/Select";
 import Button from "../../components/forms/Button";

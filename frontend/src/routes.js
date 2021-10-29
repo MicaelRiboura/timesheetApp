@@ -18,7 +18,7 @@ export default function Routes() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/funcionarios/cadastro" component={Cadastro}/>
+                    <Route path="/funcionario/cadastro" component={Cadastro}/>
                     <Route path="*" component={Home} />
                 </Switch>
             </Router>

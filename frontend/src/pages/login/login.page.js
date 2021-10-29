@@ -3,7 +3,6 @@ import Input from "../../components/forms/Input";
 import Button from "../../components/forms/Button";
 import PageTemplateForm from "../../components/template/PageTemplateForm";
 import { useAuth } from "../../hooks/auth.hook";
-import "./login.page.css"
 
 function Login() {
     const { signIn, error } = useAuth();

@@ -1,5 +1,6 @@
-import { UsersOutline, UserAddOutline, User, Logout } from "heroicons-react";
+import { UsersOutline, UserAddOutline, BriefcaseOutline, User, Logout } from "heroicons-react";
 import { useAuth } from "../../hooks/auth.hook";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const { user, signOut } = useAuth();
@@ -13,20 +14,28 @@ const Header = () => {
                     <nav>
                         <ul className="flex items-center space-x-4">
                             <li>
-                                <a href="">
+                                <Link to="/">
                                     <p className="p-2 flex items-center space-x-1 text-blue-900 hover:bg-gray-50 transition rounded-lg font-semibold">
                                         <UsersOutline className="h-5" />
                                         <span>Funcionários</span>
                                     </p>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="">
+                                <Link to="/funcionario/cadastro">
                                     <p className="p-2 flex items-center space-x-1 text-blue-900 hover:bg-gray-50 transition rounded-lg font-semibold">
                                         <UserAddOutline className="h-5" />
                                         <span>Cadastrar Funcionário</span>
                                     </p>
-                                </a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="">
+                                    <p className="p-2 flex items-center space-x-1 text-blue-900 hover:bg-gray-50 transition rounded-lg font-semibold">
+                                        <BriefcaseOutline className="h-5" />
+                                        <span>Cadastrar Cargo</span>
+                                    </p>
+                                </Link>
                             </li>
                         </ul>
                     </nav>
