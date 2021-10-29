@@ -12,7 +12,7 @@ export default function History() {
                 <div>
                     <h2>Nome</h2>
                     <p>CPF: 111.111.111-11</p>
-                    <p>Cargo: 111.111.111-11</p>
+                    <p>Cargo: Desenvolvedor</p>
                 </div>
                 <div className="py-12 flex items-center space-x-4">
                    <SearchInput placeholder="Buscar por Dia do Mês" />

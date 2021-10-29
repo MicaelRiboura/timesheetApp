@@ -3,6 +3,7 @@ import Header from '../../components/template/Header';
 import Table from '../../components/template/Table';
 import SearchInput from '../../components/forms/SearchInput';
 import { ClipboardCheck } from "heroicons-react";
+import { Link } from 'react-router-dom';
 
 export default function Home() {
     return (
@@ -43,10 +44,12 @@ export default function Home() {
                                 </div>
                             ),
                             (
-                                <div className="flex items-center text-green-500 cursor-pointer">
-                                    <ClipboardCheck className="h-4" />
-                                    <span>Histórico</span>
-                                </div>
+                                <Link to="/funcionario/historico">
+                                    <div className="flex items-center text-green-500 cursor-pointer">
+                                        <ClipboardCheck className="h-4" />
+                                        <span>Histórico</span>
+                                    </div>
+                                </Link>
                             ),
                         ],
                         [
@@ -76,10 +79,12 @@ export default function Home() {
                                 </div>
                             ),
                             (
-                                <div className="flex items-center text-green-500 cursor-pointer">
-                                    <ClipboardCheck className="h-4" />
-                                    <span>Histórico</span>
-                                </div>
+                                <Link to="/funcionario/historico">
+                                    <div className="flex items-center text-green-500 cursor-pointer">
+                                        <ClipboardCheck className="h-4" />
+                                        <span>Histórico</span>
+                                    </div>
+                                </Link>
                             ),
                         ],
                     ]}
