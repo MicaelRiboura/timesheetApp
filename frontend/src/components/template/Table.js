@@ -1,4 +1,4 @@
-import { ClipboardCheck } from "heroicons-react";
+import React from 'react';
 
 const Table = ({ labels, registers }) => {
     return (
@@ -6,58 +6,35 @@ const Table = ({ labels, registers }) => {
                 <div className="flex flex-col">
                     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
-                                <tr>
-                                    {labels && labels.map((label, index) => {
-                                        return (
-                                            <th key={`label-${index}`} scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                {label}
-                                            </th>
+                            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                <table className="min-w-full divide-y divide-gray-200">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            {labels && labels.map((label, index) => {
+                                                return (
+                                                    <th key={`label-${index}`} scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        {label}
+                                                    </th>
 
-                                        )
-                                    })}
-                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Ver histórico
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
-                                {registers && registers.map((register, index) => (
-                                    <tr key={`register-${index}`}>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-sm text-gray-900">{register.cpf}</div>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="flex items-center">
-                                                <div>
-                                                    <div className="text-sm font-medium text-gray-900">
-                                                    {register.name}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-sm text-blue-400">{register.role}</div>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap font-semibold">
-                                            {register.startTime}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap font-semibold">
-                                            {register.finishTime}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap font-semibold">
-                                            <div className="flex items-center text-green-500 cursor-pointer">
-                                                <ClipboardCheck className="h-4" />
-                                                <span>Histórico</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                            </table>
-                        </div>
+                                                )
+                                            })}
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white divide-y divide-gray-200">
+                                        {registers && registers.map((register, index) => (
+                                            <tr key={`register-${index}`}>
+                                                {register && register.map((column, index) => (
+                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                        <div className="text-sm text-gray-900">
+                                                            {register[index]}
+                                                        </div>
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
