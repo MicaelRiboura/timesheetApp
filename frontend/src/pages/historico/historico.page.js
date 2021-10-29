@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../../components/template/Header';
 import Table from '../../components/template/Table';
 import SearchInput from '../../components/forms/SearchInput';
+import { ClockOutline } from "heroicons-react";
 
 export default function History() {
     return (
@@ -27,13 +28,15 @@ export default function History() {
                                 </div>
                             ),
                             (
-                                <div className="text-sm font-medium text-green-500">
-                                   8:00
+                                <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
+                                    <ClockOutline className="h-4" />
+                                   <span>8:00</span>
                                 </div>
                             ),
                             (
-                                <div className="text-sm font-medium text-green-500">
-                                   8:00
+                                <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
+                                    <ClockOutline className="h-4" />
+                                    <span>18:00</span>
                                 </div>
                             ),
                         ],
