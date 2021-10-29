@@ -2,21 +2,27 @@ import React from "react";
 import PageTemplateForm from "../../components/template/PageTemplateForm";
 import Header from '../../components/template/Header';
 import "./cadastro.page.css"
+import Input from "../../components/forms/Input";
+import Select from "../../components/forms/Select";
+import Button from "../../components/forms/Button";
 
 function Cadastro(){
     return(
         <div className="overflow-x-hidden">
             <Header />
             <PageTemplateForm title="Cadastro de Funcionário" imageSrc="/assets/images/background.jpg">
-                <input type="text" placeholder="Nome" className="nome-cadastro"></input>
-                <input type="text" placeholder="CPF" className="cpf-cadastro"></input>
-                <select className="cargo-cadastro">
-                    <option>Cargo</option>
-                    <option>Cargo 01</option>
-                    <option>Cargo 02</option>
-                    <option>Cargo 03</option>
-                </select>
-                <button>Cadastrar</button>
+                <Input type="text" name="nome" placeholder="Nome" required />
+                <Input type="text" name="cpf" placeholder="CPF" required />
+                <Select
+                    options={[
+                        {value: 'cargo', label: 'Cargo'},
+                        {value: 'cargo01', label: 'Cargo 01'},
+                        {value: 'cargo02', label: 'Cargo 02'},
+                        {value: 'cargo03', label: 'Cargo 03'},
+                    ]}
+                >
+                </Select>
+                <Button type="submit">Cadastrar</Button>
             </PageTemplateForm>
         </div>
     );

@@ -1,0 +1,10 @@
+.select {
+    color: #252c48;
+    padding: .5rem;
+    border-radius: 10px;
+    outline: none;
+}
+
+.select:focus {
+    outline: none;
+}

@@ -22,7 +22,7 @@ option{
     color: #252c48;
 } */
 
-button{
+/* button{
     background-color: #3e8ff7;
     border-radius: 5px;
     width: 50%;
@@ -38,7 +38,7 @@ button:hover{
     background-color: #252c48;
     color: white;
 
-}
+} */
 
 input:focus::-webkit-input-placeholder {
     color: transparent;
