@@ -6,6 +6,7 @@ const AuthContext = createContext({});
 const AuthProvider = ({children}) => {
     const [signed, setSigned] = useState(false);
     const [user, setUser] = useState({});
+    const [token, setToken] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -13,6 +14,7 @@ const AuthProvider = ({children}) => {
         const storagedToken = localStorage.getItem('TM:token');
         if(storagedUser && storagedToken) {
             setUser(JSON.parse(storagedUser));
+            setToken(storagedToken);
             setSigned(true);
         }
     }, []);
@@ -42,7 +44,7 @@ const AuthProvider = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{signed, user, signIn, signOut, error}}>
+        <AuthContext.Provider value={{signed, user, token, signIn, signOut, error}}>
             {children}
         </AuthContext.Provider>
     )

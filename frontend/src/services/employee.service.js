@@ -8,8 +8,12 @@ axios.create({
 
 const list = async () => {
     try {
-        return await axios.get(`${baseUrl}/employees`).then(resp => {
-            return resp;
+        return await axios.get(`${baseUrl}/employees`, {
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem('TM:token').replaceAll('"', '')
+            }
+          }).then(resp => {
+            return resp.data;
         });
 
     } catch( erro ) {

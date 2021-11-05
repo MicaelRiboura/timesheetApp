@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/template/Header';
 import Table from '../../components/template/Table';
 import SearchInput from '../../components/forms/SearchInput';
 import { ClipboardCheck } from "heroicons-react";
 import { Link } from 'react-router-dom';
+import { list } from '../../services/employee.service';
 
 export default function Home() {
+
+    const [employees, setEmployees] = useState([]);
+
+    const loadEmployees = async () => {
+        const response = await list();
+        setEmployees(response);
+    }
+
+    useEffect(() => {
+        loadEmployees();
+    }, []);
+
     return (
         <div>
             <Header />
@@ -16,78 +29,43 @@ export default function Home() {
                 </div>
                 <Table
                     labels={['CPF', 'Nome', 'Cargo', 'Horário de Entrada', 'Horário de Saída', 'Ver histórico']}
-                    registers ={[
-                        [
-                            (
-                                <div className="text-sm text-gray-900">
-                                    111.111.111-11
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm font-medium text-gray-900">
-                                    Micael Riboura dos Santos
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm text-blue-400">
-                                    Desenvolvedor
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm text-gray-900 font-semibold text-center">
-                                    8:00
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm text-gray-900 font-semibold text-center">
-                                    18:00
-                                </div>
-                            ),
-                            (
-                                <Link to="/funcionario/historico">
-                                    <div className="flex items-center text-green-500 cursor-pointer">
-                                        <ClipboardCheck className="h-4" />
-                                        <span>Histórico</span>
+                    registers={employees.map(employee => (
+                            [
+                                (
+                                    <div className="text-sm text-gray-900">
+                                        {employee.socialId}
                                     </div>
-                                </Link>
-                            ),
-                        ],
-                        [
-                            (
-                                <div className="text-sm text-gray-900">
-                                    111.111.111-11
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm font-medium text-gray-900">
-                                    Micael Riboura dos Santos
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm text-blue-400">
-                                    Desenvolvedor
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm text-gray-900 font-semibold text-center">
-                                    8:00
-                                </div>
-                            ),
-                            (
-                                <div className="text-sm text-gray-900 font-semibold text-center">
-                                    18:00
-                                </div>
-                            ),
-                            (
-                                <Link to="/funcionario/historico">
-                                    <div className="flex items-center text-green-500 cursor-pointer">
-                                        <ClipboardCheck className="h-4" />
-                                        <span>Histórico</span>
+                                ),
+                                (
+                                    <div className="text-sm font-medium text-gray-900">
+                                        {employee.name}
                                     </div>
-                                </Link>
-                            ),
-                        ],
-                    ]}
+                                ),
+                                (
+                                    <div className="text-sm text-blue-400">
+                                      
+                                    </div>
+                                ),
+                                (
+                                    <div className="text-sm text-gray-900 font-semibold text-center">
+                                        
+                                    </div>
+                                ),
+                                (
+                                    <div className="text-sm text-gray-900 font-semibold text-center">
+                                       
+                                    </div>
+                                ),
+                                (
+                                    <Link to="/funcionario/historico">
+                                        <div className="flex items-center text-green-500 cursor-pointer">
+                                            <ClipboardCheck className="h-4" />
+                                            <span>Histórico</span>
+                                        </div>
+                                    </Link>
+                                ),
+                            ])
+                        )}
                 />
             </div>
         </div>

@@ -4,7 +4,10 @@ import Table from '../../components/template/Table';
 import SearchInput from '../../components/forms/SearchInput';
 import { ClockOutline } from "heroicons-react";
 
+
+
 export default function History() {
+
     return (
         <div>
             <Header />
