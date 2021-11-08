@@ -1,3 +1,7 @@
+/*.div-cadastro-1{
+    overflow-x: none;
+}*/
+
 input{
     border-radius: 5px;
     text-align: center;
@@ -6,20 +10,28 @@ input{
     align-self: center;
     padding-left: 40%;
     padding-right: 40%;
+    transition: .3s;
 
+}
+
+input:hover{
+    background-color: #3e8ff7;
+    color: white;
+    
 }
 
 select{
     text-align: center;
     color: #252c48;
     border-radius: 5px;
-    
+    transition: .3s;
+
 }
 
-option{
-    outline: none;
-    border: none;
-    color: #252c48;
+select:hover{
+    background-color: #3e8ff7;
+    color: white;
+
 }
 
 button{

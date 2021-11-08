@@ -36,12 +36,17 @@ input:focus::-webkit-input-placeholder {
     
 }
 
-.cpf-login::-webkit-input-placeholder{
+.nome-cadastro-cargo::-webkit-input-placeholder{
     color: #252c48;
     
 }
 
-.senha-login::-webkit-input-placeholder{
+.horário-entrada::-webkit-input-placeholder{
+    color: #252c48;
+    
+}
+
+.horário-saída::-webkit-input-placeholder{
     color: #252c48;
 
 }
