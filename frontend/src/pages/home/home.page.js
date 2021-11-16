@@ -5,14 +5,24 @@ import SearchInput from '../../components/forms/SearchInput';
 import { ClipboardCheck } from "heroicons-react";
 import { Link } from 'react-router-dom';
 import { list } from '../../services/employee.service';
+import { useAuth } from '../../hooks/auth.hook';
 
 export default function Home() {
 
     const [employees, setEmployees] = useState([]);
+    const { setSigned } = useAuth();
 
     const loadEmployees = async () => {
-        const response = await list();
-        setEmployees(response);
+            try {
+                const responseEmployees = await list();
+                console.log('employees: ', responseEmployees);
+                console.log('autorizado');
+                setEmployees(responseEmployees.data);
+            } catch(error) {
+                console.log('Não autorizado');
+                console.log("Erro: ", error);
+                setSigned(false);
+            }
     }
 
     useEffect(() => {
@@ -30,41 +40,42 @@ export default function Home() {
                 <Table
                     labels={['CPF', 'Nome', 'Cargo', 'Horário de Entrada', 'Horário de Saída', 'Ver histórico']}
                     registers={employees.map(employee => (
-                            [
-                                (
-                                    <div className="text-sm text-gray-900">
-                                        {employee.socialId}
-                                    </div>
-                                ),
-                                (
-                                    <div className="text-sm font-medium text-gray-900">
-                                        {employee.name}
-                                    </div>
-                                ),
-                                (
-                                    <div className="text-sm text-blue-400">
-                                      
-                                    </div>
-                                ),
-                                (
-                                    <div className="text-sm text-gray-900 font-semibold text-center">
-                                        
-                                    </div>
-                                ),
-                                (
-                                    <div className="text-sm text-gray-900 font-semibold text-center">
-                                       
-                                    </div>
-                                ),
-                                (
-                                    <Link to="/funcionario/historico">
-                                        <div className="flex items-center text-green-500 cursor-pointer">
-                                            <ClipboardCheck className="h-4" />
-                                            <span>Histórico</span>
+                                [
+                                    (
+                                        <div className="text-sm text-gray-900">
+                                            {employee.socialId}
                                         </div>
-                                    </Link>
-                                ),
-                            ])
+                                    ),
+                                    (
+                                        <div className="text-sm font-medium text-gray-900">
+                                            {employee.name}
+                                        </div>
+                                    ),
+                                    (
+                                        <div className="text-sm text-blue-400">
+
+                                        </div>
+                                    ),
+                                    (
+                                        <div className="text-sm text-gray-900 font-semibold text-center">
+                                            
+                                        </div>
+                                    ),
+                                    (
+                                        <div className="text-sm text-gray-900 font-semibold text-center">
+                                        
+                                        </div>
+                                    ),
+                                    (
+                                        <Link to="/funcionario/historico">
+                                            <div className="flex items-center text-green-500 cursor-pointer">
+                                                <ClipboardCheck className="h-4" />
+                                                <span>Histórico</span>
+                                            </div>
+                                        </Link>
+                                    ),
+                                ]
+                            )
                         )}
                 />
             </div>

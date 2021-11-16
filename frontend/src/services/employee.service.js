@@ -13,7 +13,7 @@ const list = async () => {
               'Authorization': 'Bearer ' + localStorage.getItem('TM:token').replaceAll('"', '')
             }
           }).then(resp => {
-            return resp.data;
+            return resp;
         });
 
     } catch( erro ) {
