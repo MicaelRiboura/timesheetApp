@@ -7,7 +7,7 @@ import Button from "../../components/forms/Button";
 
 function Cadastro(){
     return(
-        <div className="overflow-x-hidden">
+        <div>
             <Header />
             <PageTemplateForm title="Cadastro de Funcionário" imageSrc="/assets/images/background.jpg">
                 <Input type="text" name="nome" placeholder="Nome" required />
