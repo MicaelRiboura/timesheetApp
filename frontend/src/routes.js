@@ -9,6 +9,7 @@ import Cadastro from './pages/cadastro/cadastro.page';
 import History from './pages/historico/historico.page';
 import Home from './pages/home/home.page';
 import Login from './pages/login/login.page';
+import CadastroCargo from './pages/cadastro/cadastro-cargo.page';
 
 export default function Routes() {
 
@@ -21,7 +22,7 @@ export default function Routes() {
                     <Route exact path="/" component={Home} />
                     <Route path="/funcionario/cadastro" component={Cadastro}/>
                     <Route path="/funcionario/historico" component={History}/>
-                    <Route path="/cadastro-cargo" component={CadastroCargo}/>
+                    <Route path="/cargo/cadastro" component={CadastroCargo}/>
                     <Route path="*" component={Home} />
                 </Switch>
             </Router>

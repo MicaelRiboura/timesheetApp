@@ -30,7 +30,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="">
+                                <Link to="/cargo/cadastro">
                                     <p className="p-2 flex items-center space-x-1 text-blue-900 hover:bg-gray-50 transition rounded-lg font-semibold">
                                         <BriefcaseOutline className="h-5" />
                                         <span>Cadastrar Cargo</span>
