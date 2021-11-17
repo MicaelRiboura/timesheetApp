@@ -2,12 +2,19 @@ import { axios, baseUrl } from "./index";
 
 const list = async () => {
   try {
+    return await axios.get(`${baseUrl}/employees`).then((resp) => {
+      return resp;
+    });
+  } catch (erro) {
+    return erro;
+  }
+};
+
+const create = async (employee) => {
+  try {
     return await axios
-      .get(`${baseUrl}/employees`, {
-        headers: {
-          Authorization:
-            "Bearer " + localStorage.getItem("TM:token").replaceAll('"', ""),
-        },
+      .post(`${baseUrl}/employees`, {
+        ...employee,
       })
       .then((resp) => {
         return resp;
@@ -17,4 +24,4 @@ const list = async () => {
   }
 };
 
-export { list };
+export { list, create };
