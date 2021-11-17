@@ -1,9 +1,9 @@
-import { axios, baseUrl } from "./index";
+import { axios } from "./index";
 
 const signIn = async ({ socialId, password }) => {
   try {
     return await axios
-      .post(`${baseUrl}/signin`, {
+      .post(`/signin`, {
         socialId,
         password,
       })

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageTemplateForm from "../../components/template/PageTemplateForm";
 import Header from "../../components/template/Header";
 import Input from "../../components/forms/Input";
 import Select from "../../components/forms/Select";
 import Button from "../../components/forms/Button";
 import { create } from "../../services/employee.service";
+import { list } from "../../services/occupation.service";
 import "react-toastify/dist/ReactToastify.css";
 
 import { toast } from "react-toastify";
@@ -13,12 +14,13 @@ function Cadastro() {
   const [socialId, setSocialId] = useState("");
   const [name, setName] = useState("");
   const [occupationId, setOccupationId] = useState("");
+  const [occupations, setOccupations] = useState([]);
 
   const notifySuccess = () => {
     console.log("aqui");
     toast.success("Funcionário cadastrado com sucesso!", {
       position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1500,
+      autoClose: 3000,
     });
   };
 
@@ -28,13 +30,22 @@ function Cadastro() {
       socialId,
       occupation_id: parseInt(occupationId),
     };
-    // const result = await create(employee);
-    // console.log("result: ", result);
+    const result = await create(employee);
+    console.log("result: ", result);
     setSocialId("");
     setName("");
     setOccupationId("");
     notifySuccess();
   };
+
+  useEffect(() => {
+    async function loadOccupations() {
+      const responseOccupations = await list();
+      console.log("responseOccupations: ", responseOccupations);
+      setOccupations(responseOccupations.data);
+    }
+    loadOccupations();
+  }, []);
 
   return (
     <div>
@@ -64,9 +75,10 @@ function Cadastro() {
           onChange={(e) => setOccupationId(e.target.value)}
           options={[
             { value: "", label: "Cargo" },
-            { value: "1", label: "Cargo 01" },
-            { value: "2", label: "Cargo 02" },
-            { value: "3", label: "Cargo 03" },
+            ...occupations.map((occupation) => ({
+              value: occupation.id,
+              label: occupation.name,
+            })),
           ]}
         ></Select>
         <Button type="submit" onClick={onSubmit}>

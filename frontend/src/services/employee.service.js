@@ -1,8 +1,8 @@
-import { axios, baseUrl } from "./index";
+import { axios } from "./index";
 
 const list = async () => {
   try {
-    return await axios.get(`${baseUrl}/employees`).then((resp) => {
+    return await axios.get(`/employees`).then((resp) => {
       return resp;
     });
   } catch (erro) {
@@ -13,7 +13,7 @@ const list = async () => {
 const create = async (employee) => {
   try {
     return await axios
-      .post(`${baseUrl}/employees`, {
+      .post(`/employees`, {
         ...employee,
       })
       .then((resp) => {
