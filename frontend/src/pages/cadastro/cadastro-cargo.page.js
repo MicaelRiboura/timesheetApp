@@ -5,6 +5,7 @@ import "./cadastro-cargo.page.css";
 import Input from "../../components/forms/Input";
 import Button from "../../components/forms/Button";
 import { create } from "../../services/occupation.service";
+import { notifySuccess } from "../../utils/notify.utils";
 
 function CadastroCargo() {
   const [name, setName] = useState("");
@@ -26,6 +27,7 @@ function CadastroCargo() {
     const result = await create(occupation);
     console.log("occupation: ", occupation);
     console.log("result: ", result);
+    notifySuccess("Cargo cadastrado com sucesso!");
     clearFields();
   };
 

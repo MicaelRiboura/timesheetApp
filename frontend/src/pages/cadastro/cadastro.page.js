@@ -7,22 +7,13 @@ import Button from "../../components/forms/Button";
 import { create } from "../../services/employee.service";
 import { list } from "../../services/occupation.service";
 import "react-toastify/dist/ReactToastify.css";
-
-import { toast } from "react-toastify";
+import { notifySuccess } from "../../utils/notify.utils";
 
 function Cadastro() {
   const [socialId, setSocialId] = useState("");
   const [name, setName] = useState("");
   const [occupationId, setOccupationId] = useState("");
   const [occupations, setOccupations] = useState([]);
-
-  const notifySuccess = () => {
-    console.log("aqui");
-    toast.success("Funcionário cadastrado com sucesso!", {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 3000,
-    });
-  };
 
   const clearFields = () => {
     setSocialId("");
@@ -39,7 +30,7 @@ function Cadastro() {
     const result = await create(employee);
     console.log("result: ", result);
     clearFields();
-    notifySuccess();
+    notifySuccess("Funcionário cadastrado com sucesso!");
   };
 
   useEffect(() => {
