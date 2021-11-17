@@ -24,6 +24,12 @@ function Cadastro() {
     });
   };
 
+  const clearFields = () => {
+    setSocialId("");
+    setName("");
+    setOccupationId("");
+  };
+
   const onSubmit = async () => {
     const employee = {
       name,
@@ -32,9 +38,7 @@ function Cadastro() {
     };
     const result = await create(employee);
     console.log("result: ", result);
-    setSocialId("");
-    setName("");
-    setOccupationId("");
+    clearFields();
     notifySuccess();
   };
 

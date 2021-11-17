@@ -10,4 +10,18 @@ const list = async () => {
   }
 };
 
-export { list };
+const create = async (occupation) => {
+  try {
+    return await axios
+      .post(`/occupation`, {
+        ...occupation,
+      })
+      .then((resp) => {
+        return resp;
+      });
+  } catch (erro) {
+    return erro;
+  }
+};
+
+export { list, create };
