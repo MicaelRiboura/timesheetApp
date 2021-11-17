@@ -1,11 +1,13 @@
-import './styles.css';
+import "./styles.css";
 
-export default function Select({ options }) {
-    return (
-        <select className="select">
-            {options.map(option => (
-                <option value={option.value}>{option.label}</option>
-            ))}
-        </select>
-    );
+export default function Select({ options, onChange }) {
+  return (
+    <select onChange={(e) => onChange(e)} className="select">
+      {options.map((option, index) => (
+        <option key={`option-${index}`} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  );
 }
