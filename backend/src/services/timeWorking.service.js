@@ -24,19 +24,42 @@ module.exports = {
 
   async listForEmployees(employeeId) {
 
+    function onlyUnique(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+
     try {
       let employee = await employeeService.find({ id: employeeId });
       employee = JSON.parse(JSON.stringify(employee));
       let occupation = await occupationService.find(employee.occupation_id);
-      occupation = JSON.parse(JSON.stringify(occupation));
+      // occupation = JSON.parse(JSON.stringify(occupation));
       console.log('employee: ', employee);
-      const timeWorkings = await Model.findAll({ where: {employee_id: employeeId }});
+      let timeWorkings = await Model.findAll({ where: {employee_id: employeeId }});
+      timeWorkings = JSON.parse(JSON.stringify(timeWorkings));
+      const dates = timeWorkings
+        .map((timeWorking) =>
+          new Date(timeWorking.createdAt).toLocaleDateString("pt-br")
+        )
+        .filter(onlyUnique);
+
+      const registers = dates.map(date => {
+        return {
+          date,
+          registers: timeWorkings.filter(timeWorking => {
+            if(new Date(timeWorking.createdAt).toLocaleDateString("pt-br") === date)
+            return true;
+            else
+            return false;
+          })
+        }
+      })
+      console.log(timeWorkings)
       delete employee.occupation_id;
       return {
         ...employee,
         occupation,
-        timeWorkings
-      }
+        timeWorkings: registers,
+      };
     } catch (erro) {
       console.log(erro);
       return erro;
