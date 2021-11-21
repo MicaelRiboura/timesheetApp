@@ -28,6 +28,7 @@ routes.get(
   //time_working:
   routes.post("/time-working", TimeWorkingController.store);
   routes.get("/time-workings/:employeeId", authenticate, TimeWorkingController.listForEmployees);
+  routes.get("/time-workings/:employeeId/:month", authenticate, TimeWorkingController.listForEmployeesByMonth);
 
 
 module.exports = routes;

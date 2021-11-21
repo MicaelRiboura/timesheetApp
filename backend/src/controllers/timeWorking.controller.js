@@ -30,4 +30,17 @@ module.exports = {
       return res.send({ errorMessage: erro });
     }
   },
+  async listForEmployeesByMonth(req, res) {
+    const employeeId = req.params.employeeId;
+    const month = req.params.month;
+    try {
+      const timeWorkings = await service.listForEmployeesByMonth(
+        employeeId,
+        month
+      );
+      return res.json(timeWorkings);
+    } catch (erro) {
+      return res.send({ errorMessage: erro });
+    }
+  },
 };
