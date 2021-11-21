@@ -27,6 +27,7 @@ routes.get(
   routes.post("/validate-token", UserController.validateToken);
   //time_working:
   routes.post("/time-working", TimeWorkingController.store);
+  routes.get("/time-workings/:employeeId", authenticate, TimeWorkingController.listForEmployees);
 
 
 module.exports = routes;

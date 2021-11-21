@@ -1,5 +1,6 @@
 const Model = require("../models/occupation.model");
 const { Op } = require("sequelize");
+const { find } = require("./employee.service");
 
 module.exports = {
   async index() {
@@ -14,6 +15,15 @@ module.exports = {
   async store({ name, time_in, time_out }) {
     try {
       return await Model.create({ name, time_in, time_out });
+    } catch (erro) {
+      console.log(erro);
+      return erro;
+    }
+  },
+
+  async find(id) {
+    try {
+      return await Model.findOne({ id: id });
     } catch (erro) {
       console.log(erro);
       return erro;
