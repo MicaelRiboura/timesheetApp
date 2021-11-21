@@ -1,8 +1,8 @@
-import { axios, baseUrl } from "./index";
+import { axios } from "./index";
 
 const list = async () => {
   try {
-    return await axios.get(`${baseUrl}/occupation`).then((resp) => {
+    return await axios.get(`/occupation`).then((resp) => {
       return resp;
     });
   } catch (erro) {

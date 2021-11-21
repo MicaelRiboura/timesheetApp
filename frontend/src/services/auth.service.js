@@ -11,7 +11,7 @@ const signIn = async ({ socialId, password }) => {
         return resp;
       });
   } catch (erro) {
-    return erro;
+    throw erro;
   }
 };
 

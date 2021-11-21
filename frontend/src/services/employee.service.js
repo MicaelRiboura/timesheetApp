@@ -2,11 +2,15 @@ import { axios } from "./index";
 
 const list = async () => {
   try {
-    return await axios.get(`/employees`).then((resp) => {
+    const cancelToken = axios.CancelToken;
+    const source = cancelToken.source();
+    return await axios.get(`/employees`, {
+      cancelToken: source.token
+    }).then((resp) => {
       return resp;
     });
   } catch (erro) {
-    return erro;
+    throw erro;
   }
 };
 
@@ -20,7 +24,7 @@ const create = async (employee) => {
         return resp;
       });
   } catch (erro) {
-    return erro;
+    throw erro;
   }
 };
 

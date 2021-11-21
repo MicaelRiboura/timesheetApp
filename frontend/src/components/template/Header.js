@@ -43,7 +43,7 @@ const Header = () => {
                 <div className="p-4 flex items-center space-x-4">
                    <div className="flex items-center space-x-1 font-semibold">
                        <User className="h-5" />
-                       <span>{user.name}</span>
+                       <span>{user?.name}</span>
                    </div>
                    <div 
                         className="flex items-center space-x-1 cursor-pointer font-semibold text-red-900" 

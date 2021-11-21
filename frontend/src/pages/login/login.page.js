@@ -4,7 +4,7 @@ import Button from "../../components/forms/Button";
 import PageTemplateForm from "../../components/template/PageTemplateForm";
 import { useAuth } from "../../hooks/auth.hook";
 
-function Login() {
+function Login({ history }) {
     const { signIn, error } = useAuth();
     const [socialId, setSocialId ] = useState(null);
     const [password, setPassword ] = useState(null);
@@ -13,6 +13,7 @@ function Login() {
         event.preventDefault();
         if(socialId && password) {
             await signIn({ socialId, password });
+            history.push('/');
         }
     }
 

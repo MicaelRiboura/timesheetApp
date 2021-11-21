@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Header from "../../components/template/Header";
 import Table from "../../components/template/Table";
 import SearchInput from "../../components/forms/SearchInput";
@@ -6,27 +6,33 @@ import { ClipboardCheck } from "heroicons-react";
 import { Link } from "react-router-dom";
 import { list } from "../../services/employee.service";
 import { useAuth } from "../../hooks/auth.hook";
+import { setServiceToken } from "../../services";
+import { notifyError } from "../../utils/notify.utils";
 
 export default function Home() {
   const [employees, setEmployees] = useState([]);
-  const { setSigned } = useAuth();
+  const { setSigned, signed } = useAuth();
 
   const loadEmployees = async () => {
     try {
       const responseEmployees = await list();
       console.log("employees: ", responseEmployees);
       console.log("autorizado");
+      
       setEmployees(responseEmployees.data);
     } catch (error) {
       console.log("Não autorizado");
+      notifyError('Erro: Não autorizado');
       console.log("Erro: ", error);
       setSigned(false);
     }
   };
-
+  
   useEffect(() => {
-    loadEmployees();
-  }, []);
+    if (signed) {
+      loadEmployees();
+    }
+  }, [signed, setServiceToken]);
 
   return (
     <div>
@@ -51,19 +57,19 @@ export default function Home() {
             "Horário de Saída",
             "Ver histórico",
           ]}
-          registers={employees.map((employee) => [
-            <div className="text-sm text-gray-900">{employee.socialId}</div>,
+          registers={employees && employees?.length > 0 && employees.map((employee) => [
+            <div className="text-sm text-gray-900">{employee?.socialId}</div>,
             <div className="text-sm font-medium text-gray-900">
-              {employee.name}
+              {employee?.name}
             </div>,
             <div className="text-sm text-blue-400">
-              {employee.occupation.name}
+              {employee?.occupation.name}
             </div>,
             <div className="text-sm text-gray-900 font-semibold text-center">
-              {employee.occupation.time_in}
+              {employee?.occupation.time_in}
             </div>,
             <div className="text-sm text-gray-900 font-semibold text-center">
-              {employee.occupation.time_out}
+              {employee?.occupation.time_out}
             </div>,
             <Link to="/funcionario/historico">
               <div className="flex items-center text-green-500 cursor-pointer">
