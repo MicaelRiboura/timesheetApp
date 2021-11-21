@@ -1,7 +1,6 @@
 const Model = require("../models/employee.model");
 const occupationService = require("./occupation.service");
 const { Op } = require('sequelize');
-const { listBySocialId } = require("../controllers/employee.controller");
 
 module.exports = {
   async index() {

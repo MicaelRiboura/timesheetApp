@@ -10,11 +10,16 @@ module.exports = {
       },
 
       hour:  {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
 
       status: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+
+      type: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -26,15 +31,6 @@ module.exports = {
           key:  'id'
         }
       },
-
-      occupation_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'occupation', 
-          key:  'id'
-        }
-      },
-
       // Timestamps
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
