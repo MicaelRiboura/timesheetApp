@@ -1,47 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PageTemplateForm from "../../components/template/PageTemplateForm";
-import Header from "../../components/template/Header";
 import Input from "../../components/forms/Input";
-import Select from "../../components/forms/Select";
 import Button from "../../components/forms/Button";
-// import { create } from "../../services/timeWorking.service";
-import { list } from "../../services/occupation.service";
+import { signUp } from "../../services/auth.service";
 import "react-toastify/dist/ReactToastify.css";
 import { notifySuccess } from "../../utils/notify.utils";
 import { validateEmptyInput } from "../../utils/validation.utils";
 
 function TimeWorkingRegister() {
-  const [hour, setHour] = useState("");
-  const [type, setType] = useState("");
+  const [name, setName] = useState("");
   const [socialId, setSocialId] = useState("");
+  const [password, setPassword] = useState("");
 
   const clearFields = () => {
-    setHour("");
-    setType("");
+    setName("");
     setSocialId("");
+    setPassword("");
   };
 
   const onSubmit = async () => {
     const validateFields =
-      validateEmptyInput("nome", hour) &&
-      validateEmptyInput("tipo", type) &&
-      validateEmptyInput("CPF", socialId);
+      validateEmptyInput("nome", name) &&
+      validateEmptyInput("CPF", socialId) &&
+      validateEmptyInput("senha", password);
     console.log("validateFields: ", validateFields);
     if (validateFields) {
       clearFields();
-      notifySuccess("Ponto cadastrado com sucesso!");
+      await signUp({name, socialId, password});
+      notifySuccess("Usuário master cadastrado com sucesso!");
     }
   };
-  useEffect(() => {
-    console.log('calcula tempo');
-  }, []);   
 
   return (
     <div>
       <PageTemplateForm
-        title="Registre seu Ponto"
+        title="Cadastro de usuário master"
         imageSrc="/assets/images/background.jpg"
       >
+        <Input
+          value={name}
+          type="text"
+          name="nome"
+          placeholder="Nome"
+          required
+          onChange={(e) => setName(e.target.value)}
+        />
         <Input
           value={socialId}
           type="text"
@@ -50,16 +53,16 @@ function TimeWorkingRegister() {
           required
           onChange={(e) => setSocialId(e.target.value)}
         />
-        <Select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          options={[
-            { value: "start", label: "Entrada" },
-            { value: "finish", label: "Saída" },
-          ]}
-        ></Select>
+        <Input
+          value={password}
+          type="password"
+          name="senha"
+          placeholder="Senha"
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button type="submit" onClick={onSubmit}>
-          Registrar
+          Cadastrar
         </Button>
       </PageTemplateForm>
     </div>

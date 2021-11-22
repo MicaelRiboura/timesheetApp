@@ -8,7 +8,7 @@ import { create } from "../../services/occupation.service";
 import { notifySuccess } from "../../utils/notify.utils";
 import { validateEmptyInput } from "../../utils/validation.utils";
 
-function CadastroCargo() {
+function OccupationRegister() {
   const [name, setName] = useState("");
   const [timeIn, setTimeIn] = useState("");
   const [timeOut, setTimeOut] = useState("");
@@ -75,4 +75,4 @@ function CadastroCargo() {
   );
 }
 
-export default CadastroCargo;
+export default OccupationRegister;

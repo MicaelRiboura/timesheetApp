@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { notifySuccess } from "../../utils/notify.utils";
 import { validateEmptyInput } from "../../utils/validation.utils";
 
-function Cadastro() {
+function EmployeeRegister() {
   const [socialId, setSocialId] = useState("");
   const [name, setName] = useState("");
   const [occupationId, setOccupationId] = useState("");
@@ -93,4 +93,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default EmployeeRegister;
