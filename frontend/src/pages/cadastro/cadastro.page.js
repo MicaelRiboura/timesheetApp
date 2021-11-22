@@ -8,6 +8,7 @@ import { create } from "../../services/employee.service";
 import { list } from "../../services/occupation.service";
 import "react-toastify/dist/ReactToastify.css";
 import { notifySuccess } from "../../utils/notify.utils";
+import { validateEmptyInput } from "../../utils/validation.utils";
 
 function Cadastro() {
   const [socialId, setSocialId] = useState("");
@@ -22,15 +23,23 @@ function Cadastro() {
   };
 
   const onSubmit = async () => {
-    const employee = {
-      name,
-      socialId,
-      occupation_id: parseInt(occupationId),
-    };
-    const result = await create(employee);
-    console.log("result: ", result);
-    clearFields();
-    notifySuccess("Funcionário cadastrado com sucesso!");
+    
+    const validateFields = 
+    validateEmptyInput('nome', name) &&
+    validateEmptyInput('CPF', socialId) &&
+    validateEmptyInput('cargo', occupationId);
+    console.log('validateFields: ', validateFields);
+    if(validateFields) {
+      const employee = {
+        name,
+        socialId,
+        occupation_id: parseInt(occupationId),
+      };
+      const result = await create(employee);
+      console.log("result: ", result);
+      clearFields();
+      notifySuccess("Funcionário cadastrado com sucesso!");
+    }
   };
 
   useEffect(() => {
