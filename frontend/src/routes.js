@@ -6,12 +6,12 @@ import {
   Redirect
 } from "react-router-dom";
 import { useAuth } from "./hooks/auth.hook";
-import Cadastro from "./pages/cadastro/cadastro.page";
+import EmployeeRegister from "./pages/cadastro/employee.register";
+import OccupationRegister from "./pages/cadastro/occupation.register";
+import TimeWorkingRegister from "./pages/cadastro/time-working.register";
 import History from "./pages/historico/historico.page";
 import Home from "./pages/home/home.page";
 import Login from "./pages/login/login.page";
-import CadastroCargo from "./pages/cadastro/cadastro-cargo.page";
-import { useCallback } from "react";
 
 export default function Routes() {
   const { signed } = useAuth();
@@ -22,9 +22,9 @@ export default function Routes() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/funcionario/cadastro" component={Cadastro} />
+          <Route path="/funcionario/cadastro" component={EmployeeRegister} />
           <Route path="/funcionario/historico" component={History} />
-          <Route path="/cargo/cadastro" component={CadastroCargo} />
+          <Route path="/cargo/cadastro" component={OccupationRegister} />
           <Route path="*" component={Home} />
         </Switch>
       </Router>
@@ -35,7 +35,7 @@ export default function Routes() {
         <Switch>
           {/* <Route exact path="/" component={Home} /> */}
           <Route path="/master" component={Login} />
-          <Route path="/" component={Login} />
+          <Route path="/" component={TimeWorkingRegister} />
           <Route path="*" component={Login} />
         </Switch>
       </Router>
