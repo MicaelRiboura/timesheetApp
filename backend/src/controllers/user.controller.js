@@ -20,13 +20,22 @@ module.exports = {
             return res.send({ errorMessage: erro });
         }
     },
-
+    
     async validateToken(req, res) {
         const { token } = req.body;
         try {
             const responseToken = await service.validateToken({ token });
             return res.send(responseToken);
         } catch ( erro ) {
+            return res.send({ errorMessage: erro });
+        }
+    },
+
+    async countUsers(req, res){
+        try {
+            const count = await service.countUsers();
+            return res.json(count)
+        } catch( erro ) {
             return res.send({ errorMessage: erro });
         }
     }

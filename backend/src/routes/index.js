@@ -25,6 +25,7 @@ routes.get(
   routes.post("/signup", UserController.signup);
   routes.post("/signin", UserController.signin);
   routes.post("/validate-token", UserController.validateToken);
+  routes.get("/users/count", UserController.countUsers);
   //time_working:
   routes.post("/time-working", TimeWorkingController.store);
   routes.get("/time-workings/:employeeId", authenticate, TimeWorkingController.listForEmployees);
