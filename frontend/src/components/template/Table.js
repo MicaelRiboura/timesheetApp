@@ -2,44 +2,57 @@ import React from 'react';
 
 const Table = ({ labels, registers }) => {
     return (
-        <div className="flex flex-col space-y-4">
-                <div className="flex flex-col">
-                    <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                            {labels && labels.map((label, index) => {
-                                                return (
-                                                    <th key={`label-${index}`} scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        {label}
-                                                    </th>
-
-                                                )
-                                            })}
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {registers && registers.map((register, index) => (
-                                            <tr key={`register-${index}`}>
-                                                {register && register.map((_column, index) => (
-                                                    <td key={`column-${index}`} className="px-6 py-4 whitespace-nowrap">
-                                                        <div className="text-sm text-gray-900">
-                                                            {register[index]}
-                                                        </div>
-                                                    </td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-            {/* <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+      <div className="flex flex-col space-y-4">
+        <div className="flex flex-col">
+          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      {labels &&
+                        labels.map((label, index) => {
+                          return (
+                            <th
+                              key={`label-${index}`}
+                              scope="col"
+                              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                              {label}
+                            </th>
+                          );
+                        })}
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {(registers &&
+                      registers.map((register, index) => (
+                        <tr key={`register-${index}`}>
+                          {register &&
+                            register.map((_column, index) => (
+                              <td
+                                key={`column-${index}`}
+                                className="px-6 py-4 whitespace-nowrap"
+                              >
+                                <div className="text-sm text-gray-900">
+                                  {register[index]}
+                                </div>
+                              </td>
+                            ))}
+                        </tr>
+                      ))) || (
+                          <tr>
+                              <td className="p-4 text-center text-gray-500" colSpan={labels.length}>Nada Encontrado :(</td>
+                          </tr>
+                      )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          {/* <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
                 <a href="#" className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                 <span className="sr-only">Previous</span>
                 
@@ -77,9 +90,9 @@ const Table = ({ labels, registers }) => {
                 </svg>
                 </a>
             </nav> */}
-            </div>
         </div>
-    )
+      </div>
+    );
 }
 
 export default Table;
