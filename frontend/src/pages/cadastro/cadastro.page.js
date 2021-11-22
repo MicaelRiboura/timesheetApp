@@ -25,9 +25,9 @@ function Cadastro() {
   const onSubmit = async () => {
     
     const validateFields = 
-    validateEmptyInput('nome', name) &&
-    validateEmptyInput('CPF', socialId) &&
-    validateEmptyInput('cargo', occupationId);
+      validateEmptyInput('nome', name) &&
+      validateEmptyInput('CPF', socialId) &&
+      validateEmptyInput('cargo', occupationId);
     console.log('validateFields: ', validateFields);
     if(validateFields) {
       const employee = {

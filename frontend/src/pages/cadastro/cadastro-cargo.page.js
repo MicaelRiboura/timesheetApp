@@ -6,6 +6,7 @@ import Input from "../../components/forms/Input";
 import Button from "../../components/forms/Button";
 import { create } from "../../services/occupation.service";
 import { notifySuccess } from "../../utils/notify.utils";
+import { validateEmptyInput } from "../../utils/validation.utils";
 
 function CadastroCargo() {
   const [name, setName] = useState("");
@@ -19,16 +20,23 @@ function CadastroCargo() {
   };
 
   const onSubmit = async () => {
-    const occupation = {
-      name,
-      time_in: timeIn,
-      time_out: timeOut,
-    };
-    const result = await create(occupation);
-    console.log("occupation: ", occupation);
-    console.log("result: ", result);
-    notifySuccess("Cargo cadastrado com sucesso!");
-    clearFields();
+    const validateFields = 
+      validateEmptyInput('nome', name) &&
+      validateEmptyInput('hora de entrada', timeIn) &&
+      validateEmptyInput('hora de saída', timeOut);
+    console.log('validateFields: ', validateFields);
+    if(validateFields) {
+      const occupation = {
+        name,
+        time_in: timeIn,
+        time_out: timeOut,
+      };
+      const result = await create(occupation);
+      console.log("occupation: ", occupation);
+      console.log("result: ", result);
+      notifySuccess("Cargo cadastrado com sucesso!");
+      clearFields();
+    }
   };
 
   return (
