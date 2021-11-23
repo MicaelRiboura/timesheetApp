@@ -23,7 +23,7 @@ export default function Routes() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/funcionario/cadastro" component={EmployeeRegister} />
-          <Route path="/funcionario/historico" component={History} />
+          <Route path="/funcionario/historico/:socialId" component={History} />
           <Route path="/cargo/cadastro" component={OccupationRegister} />
           <Route path="*" component={Home} />
         </Switch>

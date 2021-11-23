@@ -89,7 +89,7 @@ export default function Home() {
               <div className="text-sm text-gray-900 font-semibold text-center">
                 {employee?.occupation.time_out}
               </div>,
-              <Link to="/funcionario/historico">
+              <Link to={`/funcionario/historico/${employee?.socialId}`}>
                 <div className="flex items-center text-green-500 cursor-pointer">
                   <ClipboardCheck className="h-4" />
                   <span>Histórico</span>

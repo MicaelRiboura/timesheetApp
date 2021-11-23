@@ -6,28 +6,43 @@ import { ClockOutline } from "heroicons-react";
 import { useAuth } from "../../hooks/auth.hook";
 import { setServiceToken } from "../../services";
 import { notifyError } from "../../utils/notify.utils";
-import { list } from "../../services/timeWorking.service";
+import { list, listByDay } from "../../services/timeWorking.service";
+import { useParams } from "react-router";
 
 export default function History() {
 
   const [employee, setEmployee] = useState({});
   const [timeWorkings, setTimeWorkings] = useState([]);
   const { setSigned, signed } = useAuth();
+  const { socialId } = useParams();
 
   const loadTimeWorkings = async () => {
     try {
-      const responseEmployees = await list('222.222.222-22');
-      console.log("timeWorkings: ", responseEmployees);
+      const responseTimeWorkings = await list(socialId);
+      console.log("timeWorkings: ", responseTimeWorkings);
       console.log("autorizado");
-      const employee = responseEmployees.data;
+      const employee = responseTimeWorkings.data;
       // delete employee.timeWorkings;
       setEmployee(employee);
-      setTimeWorkings(responseEmployees.data.timeWorkings);
+      setTimeWorkings(responseTimeWorkings.data.timeWorkings);
     } catch (error) {
       console.log("Não autorizado");
       notifyError("Erro: Não autorizado");
       console.log("Erro: ", error);
       setSigned(false);
+    }
+  };
+
+  const searchByDay = async (day) => {
+    const response = await listByDay(socialId, day);
+    console.log(response.data);
+    if (response.data.timeWorkings.length > 0) {
+      setTimeWorkings([...response.data.timeWorkings]);
+      console.log('guarda')
+    } else {
+     const responseTimeWorkings = await list(socialId);
+      setTimeWorkings([]);
+      console.log('mantém')
     }
   };
 
@@ -51,25 +66,32 @@ export default function History() {
           <p>Cargo: {employee?.occupation?.name}</p>
         </div>
         <div className="py-12 flex items-center space-x-4">
-          <SearchInput placeholder="Buscar por Dia do Mês" />
+          <SearchInput
+            onChange={(e) => searchByDay(e.target.value)}
+            placeholder="Buscar por Dia do Mês"
+          />
         </div>
         <Table
           labels={["Data", "Hora de Entrada", "Hora de Saída"]}
-          registers={timeWorkings?.map((timeWorking) => [
-            <div className="text-sm text-gray-900">{timeWorking.date}</div>,
-            <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
-              <ClockOutline className="h-4" />
-              <span>
-                {timeWorking.registers.find((r) => r.type === "start")?.hour}
-              </span>
-            </div>,
-            <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
-              <ClockOutline className="h-4" />
-              <span>
-                {timeWorking.registers.find((r) => r.type === "finish")?.hour}
-              </span>
-            </div>,
-          ])}
+          registers={
+            timeWorkings &&
+            timeWorkings?.length > 0 &&
+            timeWorkings?.map((timeWorking) => [
+              <div className="text-sm text-gray-900">{timeWorking.date}</div>,
+              <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
+                <ClockOutline className="h-4" />
+                <span>
+                  {timeWorking.registers.find((r) => r.type === "start")?.hour}
+                </span>
+              </div>,
+              <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
+                <ClockOutline className="h-4" />
+                <span>
+                  {timeWorking.registers.find((r) => r.type === "finish")?.hour}
+                </span>
+              </div>,
+            ])
+          }
         />
       </div>
     </div>

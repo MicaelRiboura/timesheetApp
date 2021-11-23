@@ -16,6 +16,22 @@ const list = async (employeeSocialId) => {
   }
 };
 
+const listByDay = async (employeeSocialId, day) => {
+  try {
+    const cancelToken = axios.CancelToken;
+    const source = cancelToken.source();
+    return await axios
+      .get(`/time-workings/${employeeSocialId}/${day}`, {
+        cancelToken: source.token,
+      })
+      .then((resp) => {
+        return resp;
+      });
+  } catch (erro) {
+    throw erro;
+  }
+};
+
 const create = async (timeWorking) => {
   try {
     console.log('timeEorking to be created: ', timeWorking);
@@ -29,4 +45,4 @@ const create = async (timeWorking) => {
   }
 };
 
-export { list, create };
+export { list, create, listByDay };
