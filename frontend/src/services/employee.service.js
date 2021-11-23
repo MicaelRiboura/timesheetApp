@@ -14,6 +14,18 @@ const list = async () => {
   }
 };
 
+const findBySocialId = async (socialId) => {
+  try {
+    const cancelToken = axios.CancelToken;
+    const source = cancelToken.source();
+    return await axios.get(`/employee/socialId/${socialId}`).then((resp) => {
+      return resp;
+    });
+  } catch (erro) {
+    throw erro;
+  }
+};
+
 const create = async (employee) => {
   try {
     return await axios
@@ -28,4 +40,4 @@ const create = async (employee) => {
   }
 };
 
-export { list, create };
+export { list, create, findBySocialId };

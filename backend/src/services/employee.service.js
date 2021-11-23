@@ -33,7 +33,15 @@ module.exports = {
 
   async findBySocialId(socialId) {
     try {
-      return Model.findOne({ where: { socialId } });
+      let employee = await Model.findOne({ where: { socialId } });
+      employee = JSON.parse(JSON.stringify(employee));
+      let occupation = await occupationService.find(employee.occupation_id);
+      delete employee.occupation_id;
+      return {
+        ...employee,
+        occupation
+      }
+      
     } catch (erro) {
       console.log(erro);
       return erro;

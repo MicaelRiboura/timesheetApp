@@ -4,7 +4,7 @@ import Table from "../../components/template/Table";
 import SearchInput from "../../components/forms/SearchInput";
 import { ClipboardCheck } from "heroicons-react";
 import { Link } from "react-router-dom";
-import { list } from "../../services/employee.service";
+import { findBySocialId, list } from "../../services/employee.service";
 import { useAuth } from "../../hooks/auth.hook";
 import { setServiceToken } from "../../services";
 import { notifyError } from "../../utils/notify.utils";
@@ -27,6 +27,18 @@ export default function Home() {
       setSigned(false);
     }
   };
+
+  const searchBySocialId = async (socialId) => {
+    const response = await findBySocialId(socialId);
+    console.log(response.data);
+    if(response.data.id) {
+      setEmployees([response.data]);
+    }
+    else {
+      const responseEmployees = await list();
+      setEmployees(responseEmployees.data);
+    }
+  }
   
   useEffect(() => {
     if (signed) {
@@ -46,7 +58,10 @@ export default function Home() {
           Funcionários
         </h2>
         <div className="py-12 flex items-center space-x-4">
-          <SearchInput placeholder="Buscar por CPF" />
+          <SearchInput
+            onChange={(e) => searchBySocialId(e.target.value)}
+            placeholder="Buscar por CPF"
+          />
         </div>
         <Table
           labels={[
@@ -57,27 +72,31 @@ export default function Home() {
             "Horário de Saída",
             "Ver histórico",
           ]}
-          registers={employees && employees?.length > 0 && employees.map((employee) => [
-            <div className="text-sm text-gray-900">{employee?.socialId}</div>,
-            <div className="text-sm font-medium text-gray-900">
-              {employee?.name}
-            </div>,
-            <div className="text-sm text-blue-400">
-              {employee?.occupation.name}
-            </div>,
-            <div className="text-sm text-gray-900 font-semibold text-center">
-              {employee?.occupation.time_in}
-            </div>,
-            <div className="text-sm text-gray-900 font-semibold text-center">
-              {employee?.occupation.time_out}
-            </div>,
-            <Link to="/funcionario/historico">
-              <div className="flex items-center text-green-500 cursor-pointer">
-                <ClipboardCheck className="h-4" />
-                <span>Histórico</span>
-              </div>
-            </Link>,
-          ])}
+          registers={
+            employees &&
+            employees?.length > 0 &&
+            employees.map((employee) => [
+              <div className="text-sm text-gray-900">{employee?.socialId}</div>,
+              <div className="text-sm font-medium text-gray-900">
+                {employee?.name}
+              </div>,
+              <div className="text-sm text-blue-400">
+                {employee?.occupation.name}
+              </div>,
+              <div className="text-sm text-gray-900 font-semibold text-center">
+                {employee?.occupation.time_in}
+              </div>,
+              <div className="text-sm text-gray-900 font-semibold text-center">
+                {employee?.occupation.time_out}
+              </div>,
+              <Link to="/funcionario/historico">
+                <div className="flex items-center text-green-500 cursor-pointer">
+                  <ClipboardCheck className="h-4" />
+                  <span>Histórico</span>
+                </div>
+              </Link>,
+            ])
+          }
         />
       </div>
     </div>
