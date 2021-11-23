@@ -9,6 +9,7 @@ import { list } from "../../services/occupation.service";
 import "react-toastify/dist/ReactToastify.css";
 import { notifySuccess } from "../../utils/notify.utils";
 import { validateEmptyInput } from "../../utils/validation.utils";
+import { create } from "../../services/timeWorking.service";
 
 function TimeWorkingRegister() {
   const [hour, setHour] = useState("");
@@ -28,12 +29,16 @@ function TimeWorkingRegister() {
       validateEmptyInput("CPF", socialId);
     console.log("validateFields: ", validateFields);
     if (validateFields) {
+      await create({ employeeSocialId: socialId, hour, type, status: 'inTime' });
       clearFields();
       notifySuccess("Ponto cadastrado com sucesso!");
     }
   };
+
   useEffect(() => {
-    console.log('calcula tempo');
+    const date = new Date();
+    setHour(`${date.getHours()}:${date.getMinutes()}`);
+    console.log("hour: ", `${date.getHours()}:${date.getMinutes()}`);
   }, []);   
 
   return (
@@ -54,6 +59,7 @@ function TimeWorkingRegister() {
           value={type}
           onChange={(e) => setType(e.target.value)}
           options={[
+            { value: "", label: "Entrada ou Saída?" },
             { value: "start", label: "Entrada" },
             { value: "finish", label: "Saída" },
           ]}

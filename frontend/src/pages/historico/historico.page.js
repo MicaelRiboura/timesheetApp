@@ -16,8 +16,8 @@ export default function History() {
 
   const loadTimeWorkings = async () => {
     try {
-      const responseEmployees = await list(1);
-      console.log("employees: ", responseEmployees);
+      const responseEmployees = await list('222.222.222-22');
+      console.log("timeWorkings: ", responseEmployees);
       console.log("autorizado");
       const employee = responseEmployees.data;
       // delete employee.timeWorkings;
@@ -60,13 +60,13 @@ export default function History() {
             <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
               <ClockOutline className="h-4" />
               <span>
-                {timeWorking.registers.find((r) => r.type == "start").hour}
+                {timeWorking.registers.find((r) => r.type === "start")?.hour}
               </span>
             </div>,
             <div className="text-sm font-medium text-green-500 flex items-center space-x-1">
               <ClockOutline className="h-4" />
               <span>
-                {timeWorking.registers.find((r) => r.type == "finish").hour}
+                {timeWorking.registers.find((r) => r.type === "finish")?.hour}
               </span>
             </div>,
           ])}
