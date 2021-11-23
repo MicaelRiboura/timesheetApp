@@ -32,11 +32,11 @@ module.exports = {
   },
   async listForEmployeesByMonth(req, res) {
     const employeeSocialId = req.params.employeeSocialId;
-    const month = req.params.month;
+    const day = req.params.day;
     try {
       const timeWorkings = await service.listForEmployeesByMonth(
         employeeSocialId,
-        month
+        day
       );
       return res.json(timeWorkings);
     } catch (erro) {

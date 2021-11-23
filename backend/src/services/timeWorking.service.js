@@ -69,7 +69,7 @@ module.exports = {
     }
   },
 
-  async listForEmployeesByMonth(employeeSocialId, month) {
+  async listForEmployeesByMonth(employeeSocialId, day) {
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
@@ -83,12 +83,12 @@ module.exports = {
         where: { employeeSocialId: employeeSocialId },
       });
       timeWorkings = JSON.parse(JSON.stringify(timeWorkings));
-      console.log("month: ", month);
+      console.log("day: ", day);
       const dates = timeWorkings
         .filter((timeWorking) => {
-          console.log(new Date(timeWorking.createdAt).getMonth() + 1);
+          console.log('day: ', new Date(timeWorking.createdAt).getDate());
           return (
-            new Date(timeWorking.createdAt).getMonth() + 1 === parseInt(month)
+            new Date(timeWorking.createdAt).getDate() === parseInt(day)
           );
         })
         .map((timeWorking) =>
