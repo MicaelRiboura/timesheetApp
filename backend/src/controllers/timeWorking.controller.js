@@ -2,19 +2,19 @@ const service = require("../services/timeWorking.service");
 
 module.exports = {
   async store(req, res) {
-    const { hour, status, type, employee_id } = req.body;
+    const { hour, status, type, employeeSocialId } = req.body;
     try {
       console.log("time_working: ", {
         hour,
         status,
         type,
-        employee_id,
+        employeeSocialId,
       });
       const timeWorking = await service.store({
         hour,
         status,
         type,
-        employee_id,
+        employeeSocialId,
       });
       return res.json(timeWorking);
     } catch (erro) {
@@ -22,20 +22,20 @@ module.exports = {
     }
   },
   async listForEmployees(req, res) {
-    const employeeId = req.params.employeeId;
+    const employeeSocialId = req.params.employeeSocialId;
     try {
-      const timeWorkings = await service.listForEmployees(employeeId);
+      const timeWorkings = await service.listForEmployees(employeeSocialId);
       return res.json(timeWorkings);
     } catch (erro) {
       return res.send({ errorMessage: erro });
     }
   },
   async listForEmployeesByMonth(req, res) {
-    const employeeId = req.params.employeeId;
+    const employeeSocialId = req.params.employeeSocialId;
     const month = req.params.month;
     try {
       const timeWorkings = await service.listForEmployeesByMonth(
-        employeeId,
+        employeeSocialId,
         month
       );
       return res.json(timeWorkings);

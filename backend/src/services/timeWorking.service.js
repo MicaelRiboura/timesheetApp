@@ -4,36 +4,38 @@ const employeeService = require('./employee.service');
 const occupationService = require('./occupation.service');
 
 module.exports = {
-  async store({ hour, status, type, employee_id }) {
+  async store({ hour, status, type, employeeSocialId }) {
     try {
-        // status: inAhead, late, inTime
-        const timeWorking = {
+      // status: inAhead, late, inTime
+      const timeWorking = {
         hour,
         status,
         type,
-        employee_id,
+        employeeSocialId,
       };
-      console.log('timeWorking: ', timeWorking);
+      console.log("timeWorking: ", timeWorking);
 
       return await Model.create(timeWorking);
     } catch (erro) {
-      console.log('erro store service timeWorking ', erro);
+      console.log("erro store service timeWorking ", erro);
       return erro;
     }
   },
 
-  async listForEmployees(employeeId) {
-
+  async listForEmployees(employeeSocialId) {
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
 
     try {
-      let employee = await employeeService.find({ id: employeeId });
+      let employee = await employeeService.findBySocialId(employeeSocialId);
       employee = JSON.parse(JSON.stringify(employee));
+      console.log('employee: ', employee)
       let occupation = await occupationService.find(employee.occupation_id);
-      console.log('employee: ', employee);
-      let timeWorkings = await Model.findAll({ where: {employee_id: employeeId }});
+      console.log("employee: ", employee);
+      let timeWorkings = await Model.findAll({
+        where: { employeeSocialId: employeeSocialId },
+      });
       timeWorkings = JSON.parse(JSON.stringify(timeWorkings));
       const dates = timeWorkings
         .map((timeWorking) =>
@@ -41,18 +43,20 @@ module.exports = {
         )
         .filter(onlyUnique);
 
-      const registers = dates.map(date => {
+      const registers = dates.map((date) => {
         return {
           date,
-          registers: timeWorkings.filter(timeWorking => {
-            if(new Date(timeWorking.createdAt).toLocaleDateString("pt-br") === date)
-            return true;
-            else
-            return false;
-          })
-        }
-      })
-      console.log(timeWorkings)
+          registers: timeWorkings.filter((timeWorking) => {
+            if (
+              new Date(timeWorking.createdAt).toLocaleDateString("pt-br") ===
+              date
+            )
+              return true;
+            else return false;
+          }),
+        };
+      });
+      console.log(timeWorkings);
       delete employee.occupation_id;
       return {
         ...employee,
@@ -64,46 +68,48 @@ module.exports = {
       return erro;
     }
   },
-  
-  async listForEmployeesByMonth(employeeId, month) {
 
+  async listForEmployeesByMonth(employeeSocialId, month) {
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
 
     try {
-      let employee = await employeeService.find({ id: employeeId });
+      let employee = await employeeService.findBySocialId(employeeSocialId);
       employee = JSON.parse(JSON.stringify(employee));
       let occupation = await occupationService.find(employee.occupation_id);
-      console.log('employee: ', employee);
-      let timeWorkings = await Model.findAll({ where: {employee_id: employeeId }});
+      console.log("employee: ", employee);
+      let timeWorkings = await Model.findAll({
+        where: { employeeSocialId: employeeSocialId },
+      });
       timeWorkings = JSON.parse(JSON.stringify(timeWorkings));
-      console.log('month: ', month)
+      console.log("month: ", month);
       const dates = timeWorkings
-        .filter(timeWorking => {
+        .filter((timeWorking) => {
           console.log(new Date(timeWorking.createdAt).getMonth() + 1);
-          return (new Date(timeWorking.createdAt).getMonth() + 1) === parseInt(month)
+          return (
+            new Date(timeWorking.createdAt).getMonth() + 1 === parseInt(month)
+          );
         })
         .map((timeWorking) =>
           new Date(timeWorking.createdAt).toLocaleDateString("pt-br")
         )
         .filter(onlyUnique);
-      console.log('dates: ', dates)
-      const registers = dates
-        .map((date) => {
-          return {
-            date: date,
-            registers: timeWorkings.filter((timeWorking) => {
-              if (
-                new Date(timeWorking.createdAt).toLocaleDateString("pt-br") ===
-                date
-              )
-                return true;
-              else return false;
-            }),
-          };
-        });
-      console.log(timeWorkings)
+      console.log("dates: ", dates);
+      const registers = dates.map((date) => {
+        return {
+          date: date,
+          registers: timeWorkings.filter((timeWorking) => {
+            if (
+              new Date(timeWorking.createdAt).toLocaleDateString("pt-br") ===
+              date
+            )
+              return true;
+            else return false;
+          }),
+        };
+      });
+      console.log(timeWorkings);
       delete employee.occupation_id;
       return {
         ...employee,

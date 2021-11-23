@@ -7,7 +7,7 @@ class TimeWorking extends Model {
         hour: DataTypes.STRING,
         status: DataTypes.STRING,
         type: DataTypes.STRING,
-        employee_id: DataTypes.INTEGER
+        employeeSocialId: DataTypes.STRING
       },
       {
         sequelize,
